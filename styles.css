@@ -56,6 +56,10 @@ main {
   color: white;
 }
 
+.cariBuku button:hover {
+  background-color: #3a74b6;
+}
+
 #bookForm input {
   padding: 10px 5px;
 }
@@ -66,6 +70,10 @@ main {
   border: none;
   background-color: #91adc8;
   color: white;
+}
+
+#bookForm button:hover {
+  background-color: #3a74b6;
 }
 
 .input {
@@ -94,4 +102,138 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#completeBookList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* --- Gaya Modal --- */
+#edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 2rem;
+  width: 100%;
+  max-width: 32rem;
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+#close-modal-button {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+}
+#close-modal-button:hover {
+  color: #4b5563;
+}
+#close-modal-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group-last {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.form-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(199, 210, 254, 0.5);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+#edit-modal.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #91adc8;
+  color: white;
+}
+
+button:hover {
+  background-color: #3a74b6;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #d76060;
+  color: white;
+}
+
+.delete-btn:hover {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #de3030;
+  color: white;
 }

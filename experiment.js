@@ -27,3 +27,6 @@ const searchResults = books.filter((book) => {
 
 // Menampilkan hasilnya
 console.log(searchResults);
+
+const name;
+console.log(name);

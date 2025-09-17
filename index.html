@@ -26,7 +26,7 @@
           <div>
             <label for="bookFormTitle">Judul</label><br />
             <input
-              class="input"
+              class="form-input"
               data-testid="bookFormTitleInput"
               id="bookFormTitle"
               required
@@ -36,7 +36,7 @@
           <div>
             <label for="bookFormAuthor">Penulis</label><br />
             <input
-              class="input"
+              class="form-input"
               data-testid="bookFormAuthorInput"
               id="bookFormAuthor"
               required
@@ -46,7 +46,7 @@
           <div>
             <label for="bookFormYear">Tahun</label><br />
             <input
-              class="input"
+              class="form-input"
               data-testid="bookFormYearInput"
               id="bookFormYear"
               required
@@ -79,6 +79,7 @@
             data-testid="searchBookFormTitleInput"
             id="searchBookTitle"
             type="text"
+            class="form-input"
           />
           <button
             data-testid="searchBookFormSubmitButton"
@@ -93,16 +94,71 @@
       <section class="container-selesai-baca">
         <h2>Belum selesai dibaca</h2>
 
-        <div data-testid="incompleteBookList" id="incompleteBookList">
-        </div>
+        <div data-testid="incompleteBookList" id="incompleteBookList"></div>
       </section>
 
       <section class="container-belum-baca">
         <h2>Selesai dibaca</h2>
 
-        <div data-testid="completeBookList" id="completeBookList">
-        </div>
+        <div data-testid="completeBookList" id="completeBookList"></div>
       </section>
+
+      <!-- Modal untuk Edit Informasi Buku -->
+      <div id="edit-modal" class="hidden">
+        <!-- Konten Modal -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Edit Informasi Buku</h3>
+            <button id="close-modal-button">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Form Edit -->
+          <form id="edit-form">
+            <div class="form-group">
+              <label for="edit-title" class="form-label">Judul Buku</label>
+              <input type="text" id="edit-title" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="edit-author" class="form-label">Penulis</label>
+              <input type="text" id="edit-author" class="form-input" />
+            </div>
+            <div class="form-group-last">
+              <label for="edit-year" class="form-label">Tahun</label>
+              <input class="form-input" id="edit-year" required type="number" />
+            </div>
+            <div class="modal-footer">
+              <button
+                id="cancel-button"
+                type="button"
+                class="button button-secondary"
+              >
+                Batal
+              </button>
+              <button
+                id="save-button"
+                type="submit"
+                class="button button-primary"
+              >
+                Simpan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
   </body>
 </html>

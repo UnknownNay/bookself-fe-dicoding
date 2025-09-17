@@ -2,9 +2,18 @@ const RENDER_EVENT = 'render-books';
 const BOOKS_KEY = 'BOOKS';
 const RENDER_SEARCH = 'render-search';
 let searchResult = [];
+let currentEditBookId = null;
 
 if (typeof Storage !== 'undefined') {
+  const editModal = document.getElementById('edit-modal');
+  const editForm = document.getElementById('edit-form');
+  const closeModalButton = document.getElementById('close-modal-button');
+  const cancelButton = document.getElementById('cancel-button');
   const incompleteBookList = document.getElementById('incompleteBookList');
+
+  const editTitleInput = document.getElementById('edit-title');
+  const editAuthorInput = document.getElementById('edit-author');
+  const editYear = document.getElementById('edit-year');
 
   function bookObject(id, title, author, year, isCompleted) {
     return {
@@ -15,7 +24,7 @@ if (typeof Storage !== 'undefined') {
       isCompleted,
     };
   }
-  //Inisialisasi key value BOOKS di localstorage
+
   function initBookStorage() {
     if (localStorage.getItem(BOOKS_KEY) === null) {
       const arr = [];
@@ -77,6 +86,22 @@ if (typeof Storage !== 'undefined') {
     return searchResult;
   }
 
+  function openModal(book) {
+    editModal.classList.remove('hidden');
+    // Isi form edit dengan data buku
+    editTitleInput.value = book.title;
+    editAuthorInput.value = book.author;
+    editYear.value = book.year;
+    currentEditBookId = book.id;
+    // Event listener untuk tombol close modal
+    closeModalButton.addEventListener('click', closeModal);
+    cancelButton.addEventListener('click', closeModal);
+  }
+
+  function closeModal() {
+    editModal.classList.add('hidden');
+  }
+
   document.addEventListener(RENDER_EVENT, () => {
     const bookParse = parseLocalStorage();
     incompleteBookList.innerHTML = '';
@@ -93,6 +118,20 @@ if (typeof Storage !== 'undefined') {
     }
     console.log('Data berhasil ditampilkan');
   });
+
+  function editDataBuku() {
+    const bookData = parseLocalStorage();
+    const index = bookData.findIndex((item) => item.id === currentEditBookId);
+    if (index !== -1) {
+      bookData[index].title = editTitleInput.value;
+      bookData[index].author = editAuthorInput.value;
+      bookData[index].year = editYear.value;
+      localStorage.setItem(BOOKS_KEY, JSON.stringify(bookData));
+      document.dispatchEvent(new Event(RENDER_EVENT));
+      closeModal();
+      console.log('Data buku berhasil diedit');
+    }
+  }
 
   function removeBooks(id) {
     const book = parseLocalStorage();
@@ -119,14 +158,19 @@ if (typeof Storage !== 'undefined') {
 
     const btnDelete = document.createElement('button');
     btnDelete.innerText = 'Hapus Buku';
+    btnDelete.classList.add('delete-btn');
     btnDelete.addEventListener('click', () => {
       removeBooks(bookObject.id);
     });
 
     const btnEdit = document.createElement('button');
     btnEdit.innerText = 'Edit Buku';
+    btnEdit.addEventListener('click', () => {
+      openModal(bookObject);
+    });
 
     const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('btn-container');
     if (!bookObject.isCompleted) {
       const btnCompleted = document.createElement('button');
       btnCompleted.innerText = 'Selesai dibaca';
@@ -140,7 +184,7 @@ if (typeof Storage !== 'undefined') {
       btnNotCompleted.addEventListener('click', () => {
         belumSelesaiBaca(bookObject.id);
       });
-      buttonContainer.append(btnNotCompleted, btnDelete, btnEdit);
+      buttonContainer.append(btnNotCompleted, btnEdit, btnDelete);
     }
 
     const bookContainer = document.createElement('div');
@@ -187,6 +231,11 @@ if (typeof Storage !== 'undefined') {
       event.preventDefault();
       searchResult = cariBuku(searchBookTitle);
       document.dispatchEvent(new Event(RENDER_SEARCH));
+    });
+
+    editForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      editDataBuku();
     });
   });
 } else {
