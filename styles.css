@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Epunda Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #aed6cf;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+main {
+  margin-top: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.addBuku {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.cariBuku {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+#searchBook {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#searchBookTitle {
+  flex-grow: 1;
+  padding: 10px 5px;
+}
+.cariBuku button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #91adc8;
+  color: white;
+}
+
+#bookForm input {
+  padding: 10px 5px;
+}
+
+#bookForm button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #91adc8;
+  color: white;
+}
+
+.input {
+  width: 100%;
+}
+
+.container-selesai-baca {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.container-belum-baca {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.book-item {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+#incompleteBookList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
